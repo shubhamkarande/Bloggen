@@ -1,197 +1,208 @@
-# Bloggen - AI-Powered Blog Generator
+# Bloggen - AI-Powered Blog Writer
 
-A modern, responsive web application for generating AI-powered blog posts with a beautiful user interface built using Next.js, Tailwind CSS, and Framer Motion.
+> **Write smarter. Rank faster. Publish better.**
 
-## 🚀 Features
+Bloggen is a full-stack AI-assisted blogging platform that helps creators generate high-quality, SEO-optimized blog posts in minutes instead of hours.
 
-- **AI-Powered Blog Generation**: Generate high-quality blog posts with customizable tone, length, and keywords
-- **Modern UI/UX**: Clean, responsive design with smooth animations and micro-interactions
-- **Dark/Light Mode**: Toggle between dark and light themes with persistent storage
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **SEO Optimized**: Proper meta tags, OpenGraph support, and semantic HTML
-- **Blog Management**: View all generated blogs with filtering and search functionality
-- **Contact Forms**: Fully validated contact form with multiple categories
-- **Skeleton Loading**: Elegant loading states for better user experience
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs) ![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-316192?logo=postgresql) ![Tailwind](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwindcss) ![License](https://img.shields.io/badge/License-MIT-green)
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-- **Framework**: Next.js 13+ with App Router
-- **Styling**: Tailwind CSS with shadcn/ui components
-- **Animations**: Framer Motion for smooth transitions
-- **Icons**: Lucide React
-- **Theme**: next-themes for dark/light mode
-- **TypeScript**: Full type safety throughout the application
+- 🧠 **AI Blog Generation** - Generate outlines and full blog content with AI
+- 📝 **Rich Text Editor** - TipTap-powered editor with full formatting toolbar
+- 📈 **SEO Analyzer** - Real-time SEO scoring with actionable suggestions
+- 🏷 **Tag & Category Management** - Organize your content effectively
+- 💾 **Auto-save** - Never lose your work
+- 🔐 **Secure Authentication** - Token-based auth with Laravel Sanctum
+- 📤 **Export Options** - Markdown, HTML, or WordPress-ready format
+- 👨‍💼 **Admin Panel** - User management and AI usage analytics
 
-## 📱 Pages
+## 🛠 Tech Stack
 
-- **Homepage (/)**: Hero section with features and call-to-action
-- **Generate (/generate)**: Blog generation form with validation
-- **Blogs (/blogs)**: Blog listing with search and filtering
-- **Blog Detail (/blogs/[id])**: Individual blog post view
-- **About (/about)**: Company information and team details
-- **Contact (/contact)**: Contact form with validation
+| Layer | Technology |
+|-------|------------|
+| Frontend | Next.js 16 (App Router), Tailwind CSS, Framer Motion, TipTap |
+| Backend | PHP 8.3, Laravel 12 (REST API) |
+| Database | PostgreSQL 18 |
+| AI | Groq API (Free - Llama 3.1) |
+| Auth | Laravel Sanctum |
+| Package Manager | pnpm |
 
-## 🎨 Design Features
-
-- **Gradient Backgrounds**: Modern gradient designs throughout
-- **Hover Effects**: Interactive elements with smooth hover states
-- **Micro-interactions**: Subtle animations that enhance user experience
-- **Consistent Spacing**: 8px spacing system for visual harmony
-- **Typography**: Professional font hierarchy with Inter font family
-- **Color System**: Comprehensive color palette with semantic naming
-
-## 🚦 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- Node.js 20+
+- PHP 8.3+
+- Composer
+- pnpm
+- PostgreSQL
 
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd bloggen
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-### Build for Production
+### 1. Clone the Repository
 
 ```bash
-npm run build
-npm start
+git clone https://github.com/shubhamkarande/Bloggen.git
+cd Bloggen
 ```
+
+### 2. Backend Setup
+
+```bash
+cd backend
+
+# Install dependencies
+composer install
+
+# Copy environment file
+cp .env.example .env
+
+# Generate app key
+php artisan key:generate
+
+# Configure database in .env
+# For quick start, use SQLite:
+# DB_CONNECTION=sqlite
+# DB_DATABASE=/absolute/path/to/database.sqlite
+
+# Run migrations
+php artisan migrate
+
+# Start server
+php artisan serve
+```
+
+### 3. Frontend Setup
+
+```bash
+cd frontend
+
+# Install dependencies
+pnpm install
+
+# Create environment file
+echo "NEXT_PUBLIC_API_URL=http://localhost:8000/api" > .env.local
+
+# Start dev server
+pnpm dev
+```
+
+### 4. Get Groq API Key (Free)
+
+1. Visit [console.groq.com](https://console.groq.com)
+2. Create a free account
+3. Generate an API key
+4. Add to backend `.env`: `GROQ_API_KEY=your_key_here`
 
 ## 📁 Project Structure
 
 ```
-├── app/                    # Next.js app directory
-│   ├── (pages)/           # Page components
-│   ├── globals.css        # Global styles
-│   └── layout.tsx         # Root layout
-├── components/            # Reusable components
-│   ├── ui/               # shadcn/ui components
-│   ├── blog-card.tsx     # Blog card component
-│   ├── blog-skeleton.tsx # Loading skeleton
-│   ├── header.tsx        # Navigation header
-│   ├── footer.tsx        # Site footer
-│   └── theme-provider.tsx # Theme context
-├── lib/                   # Utility functions
-│   └── utils.ts          # Helper utilities
-├── public/               # Static assets
-└── README.md            # Project documentation
+Bloggen/
+├── frontend/                 # Next.js 16 App
+│   ├── src/
+│   │   ├── app/             # App Router pages
+│   │   ├── components/      # React components
+│   │   ├── lib/             # API client, auth
+│   │   └── hooks/           # Custom hooks
+│   └── package.json
+│
+├── backend/                  # Laravel 12 API
+│   ├── app/
+│   │   ├── Http/Controllers/
+│   │   ├── Models/
+│   │   └── Services/        # GroqAIService
+│   ├── database/migrations/
+│   └── routes/api.php
+│
+└── docs/                     # Documentation
 ```
 
-## 🎯 Key Components
+## 🔌 API Endpoints
 
-### Header Navigation
-- Responsive navigation with mobile hamburger menu
-- Active link highlighting
-- Dark/light mode toggle
-- Smooth animations
+### Authentication
 
-### Blog Cards
-- Hover effects and transitions
-- Author information and read time
-- Category badges and tags
-- Responsive grid layout
+- `POST /api/register` - Register new user
+- `POST /api/login` - Login
+- `POST /api/logout` - Logout
+- `GET /api/user` - Get current user
 
-### Form Validation
-- Client-side validation with error messages
-- Loading states and success feedback
-- Accessibility features
+### Blogs
 
-### Theme System
-- Dark/light mode with system preference detection
-- Persistent theme storage
-- Smooth theme transitions
+- `GET /api/blogs` - List user's blogs
+- `POST /api/blogs` - Create blog
+- `GET /api/blogs/{id}` - Get blog
+- `PUT /api/blogs/{id}` - Update blog
+- `DELETE /api/blogs/{id}` - Delete blog
+- `POST /api/blogs/{id}/export` - Export blog
 
-## 🔧 Customization
+### AI
 
-### Adding New Pages
-1. Create a new file in the `app/` directory
-2. Follow the existing page structure
-3. Add navigation links to `components/header.tsx`
-4. Update the footer links if needed
+- `POST /api/ai/generate-outline` - Generate blog outline
+- `POST /api/ai/generate-content` - Generate full content
+- `POST /api/ai/seo-analyze` - Analyze SEO
+- `POST /api/ai/rewrite` - Rewrite content
 
-### Styling
-- Modify `tailwind.config.ts` for theme customization
-- Update `app/globals.css` for global styles
-- Use the existing color system for consistency
+### Admin
 
-### Components
-- All UI components are in `components/ui/`
-- Custom components are in `components/`
-- Follow the existing naming conventions
+- `GET /api/admin/dashboard` - Dashboard stats
+- `GET /api/admin/users` - List users
+- `GET /api/admin/ai-usage` - AI usage analytics
 
-## 🌐 SEO Features
+## 🚀 Deployment
 
-- Dynamic meta tags for each page
-- OpenGraph and Twitter Card support
-- Semantic HTML structure
-- Proper heading hierarchy
-- Alt text for images
-- Structured data ready
+### Frontend (Vercel)
 
-## 📱 Responsive Design
+```bash
+cd frontend
+vercel
+```
 
-- Mobile-first approach
-- Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
-- Flexible grid layouts
-- Touch-friendly interactions
-- Optimized typography scaling
+### Backend (Free Options)
 
-## 🎭 Animation System
+- **Railway** - `railway up`
+- **Render** - Connect GitHub repo
+- **Azure App Service** - Free tier available
 
-- Page transitions with Framer Motion
-- Staggered animations for lists
-- Hover and focus states
-- Loading animations
-- Smooth theme transitions
+### Database (Free PostgreSQL)
 
-## 📊 Performance
+- **Supabase** - 500MB free
+- **Neon** - 3GB free
+- **Railway** - 1GB free
 
-- Optimized images with Next.js Image component
-- Lazy loading for components
-- Efficient bundle splitting
-- Minimal JavaScript footprint
-- CSS optimizations
+## 📄 Environment Variables
 
-## 🔮 Future Enhancements
+### Backend (.env)
 
-- [ ] Real backend integration
-- [ ] User authentication
-- [ ] Blog editing capabilities
-- [ ] Social sharing features
-- [ ] Advanced search functionality
-- [ ] Analytics integration
-- [ ] Payment integration
-- [ ] Multi-language support
+```
+APP_KEY=           # Generated by Laravel
+DB_CONNECTION=pgsql
+DB_HOST=
+DB_PORT=5432
+DB_DATABASE=bloggen
+DB_USERNAME=
+DB_PASSWORD=
+GROQ_API_KEY=      # Get from console.groq.com
+FRONTEND_URL=http://localhost:3000
+CORS_ALLOWED_ORIGINS=http://localhost:3000
+```
+
+### Frontend (.env.local)
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000/api
+```
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+MIT License - feel free to use this project for any purpose.
 
-## 📞 Support
+---
 
-For support, email hello@bloggen.com or create an issue on GitHub.
+Built with ❤️ for content creators.
